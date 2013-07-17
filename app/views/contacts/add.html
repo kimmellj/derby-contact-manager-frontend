@@ -1,0 +1,85 @@
+<div class="container main-frame" ng-app="derbyContactManagerFrontendApp" ng-controller="ContactsCtrl" ng-init="addInit()">
+    <h2>Add a Contact</h2>
+    <form novalidate class="form-horizontal">
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label" for="inputName">Name</label>
+                    <div class="controls">
+                        <input type="text" id="inputName" placeholder="Name" ng-model="contact.name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputEmail">Email</label>
+                    <div class="controls">
+                        <input type="text" id="inputEmail" placeholder="Email" ng-model="contact.email">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputPhone">Phone</label>
+                    <div class="controls">
+                        <input type="text" id="inputPhone" placeholder="Phone" ng-model="contact.phone">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputAddress">Address</label>
+                    <div class="controls">
+                        <input type="text" id="inputAddress" placeholder="Address" ng-model="contact.address">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputCity">City</label>
+                    <div class="controls">
+                        <input type="text" id="inputCity" placeholder="City" ng-model="contact.city">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputState">State</label>
+                    <div class="controls">
+                        <input type="text" id="inputState" placeholder="State" ng-model="contact.state">
+                    </div>
+                </div>                
+                <div class="control-group">
+                    <label class="control-label" for="inputZip">Zip</label>
+                    <div class="controls">
+                        <input type="text" id="inputZip" placeholder="Zip" ng-model="contact.zip">
+                    </div>
+                </div>                 
+            </div>
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label" for="inputDerbyName">Derby Name</label>
+                    <div class="controls">
+                        <input type="text" id="inputDerbyName" placeholder="Derby Name" ng-model="contact.derby_name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="selectOrganizationID">Organization</label>
+                    <div class="controls">
+                        <select id="organizationID" ng-model="contact.organization_id">
+                            <option ng-repeat="(id, organization) in organizationList" value="{{id}}">{{organization}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputInsuranceType">Insurance Type</label>
+                    <div class="controls">
+                        <input type="text" id="inputInsuranceType" placeholder="Insurance Type" ng-model="contact.insurance_type">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputInsuranceNumber">Insurance Number</label>
+                    <div class="controls">
+                        <input type="text" id="inputInsuranceNumber" placeholder="Insurance Number" ng-model="contact.insurance_number">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button ng-click="add(contact)" class="btn">Add User</button>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,15 @@
+<div class="container main-frame" ng-app="derbyContactManagerFrontendApp" ng-controller="ContactsCtrl" ng-init="init()">
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="organization in results">
+            <td>{{organization.Organization.name}}</td>
+            <td><a href="#/organizations/view/{{organization.Organization.id}}" class="btn">View</a></td>
+        </tr>
+    </table>
+
+</div>
