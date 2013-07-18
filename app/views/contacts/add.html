@@ -1,4 +1,8 @@
 <div class="container main-frame" ng-app="derbyContactManagerFrontendApp" ng-controller="ContactsCtrl" ng-init="addInit()">
+    <div ng-class="messageClass">
+        {{message}}
+    </div>
+    
     <h2>Add a Contact</h2>
     <form novalidate class="form-horizontal">
         <div class="row-fluid">

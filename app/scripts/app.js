@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('derbyContactManagerFrontendApp', [])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $httpProvider) {
+    
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];    
+    
     $routeProvider
       .when('/', {
         templateUrl: 'views/contacts/index.html',

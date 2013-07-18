@@ -6,8 +6,13 @@ angular.module('derbyContactManagerFrontendApp')
     $scope.contact = {};
     $scope.organizationList = {};
     
+    $scope.baseUrl = 'http://derbycontactmanager.dev/contacts';
+    $scope.orgBaseUrl = 'http://derbycontactmanager.dev/organizations';
+    $scope.message = '';
+    $scope.messageClass = '';
+    
     $scope.init = function() {    
-        $http.jsonp('http://localhost/derby-contact-manager-backend/contacts.json?callback=JSON_CALLBACK').success(function(data) {
+        $http.jsonp($scope.baseUrl + '.json?callback=JSON_CALLBACK').success(function(data) {
             $scope.results = data;
             console.log(data);
         }).error(function(error) {
@@ -16,7 +21,7 @@ angular.module('derbyContactManagerFrontendApp')
     };
     
     $scope.viewInit = function() {
-        $http.jsonp('http://localhost/derby-contact-manager-backend/contacts/view/'+$routeParams.contactId+'.json?callback=JSON_CALLBACK').success(function(data) {
+        $http.jsonp($scope.baseUrl + '/view/'+$routeParams.contactId+'.json?callback=JSON_CALLBACK').success(function(data) {
             $scope.contact = data;
             console.log(data);
         }).error(function(error) {
@@ -25,7 +30,7 @@ angular.module('derbyContactManagerFrontendApp')
     }
     
     $scope.addInit = function() {
-        $http.jsonp('http://localhost/derby-contact-manager-backend/organizations/indexList.json?callback=JSON_CALLBACK').success(function(data) {
+        $http.jsonp($scope.orgBaseUrl + '/indexList.json?callback=JSON_CALLBACK').success(function(data) {
             $scope.organizationList = data;
             console.log(data);
         }).error(function(error) {
@@ -34,13 +39,45 @@ angular.module('derbyContactManagerFrontendApp')
     }
     
     $scope.add = function(contact) {
-        $http({method: 'POST', url: 'http://localhost/derby-contact-manager-backend/contacts/add.json'}).
+        $http({
+            "method": 'POST',
+            "url": $scope.baseUrl + '/add.json',
+            "data": {
+                contact: contact
+            },
+            "headers": {
+                "Content-Type": "multipart/form-data"
+            }
+        }).
         success(function(data, status, headers, config) {
-            console.log(data);
+            $scope.message = data.message;
+            if (!data.success) {
+                $scope.messageClass = "alert alert-error";
+            } else {
+                $scope.messageClass = "alert alert-success";
+                $scope.contact = {};
+            }
         }).
         error(function(data, status, headers, config) {
-            console.log(headers);
-            console.log(data);
+            $scope.message = "There was an issue saving this contact.";
+            $scope.messageClass = "alert alert-success";
         });
     }
+    
+    /**
+     * @todo confirmation needed
+     */
+    $scope.deleteContact = function (contactId) {
+        $http({
+            "method": 'DELETE',
+            "url": $scope.baseUrl + '/delete/'+contactId+'.json',
+            
+        }).
+        success(function(data, status, headers, config) {
+            $scope.init();
+        }).
+        error(function(data, status, headers, config) {
+
+        });       
+    };    
 });

@@ -16,8 +16,9 @@
             <td>{{contact.Contact.derby_name}}</td>
             <td>{{contact.Contact.name}}</td>
             <td>{{contact.Organization.name}}</td>
-            <td><a href="#/contacts/view/{{contact.Contact.id}}" class="btn">View</a></td>
+            <td><a href="#/contacts/view/{{contact.Contact.id}}" class="btn">View</a>
+            <a href="" class="btn btn-danger" data-ng-click="deleteContact(contact.Contact.id)">Delete</a>
+            </td>
         </tr>
     </table>
-
 </div>
