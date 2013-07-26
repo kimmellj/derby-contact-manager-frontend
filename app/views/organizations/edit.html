@@ -1,0 +1,53 @@
+<div class="container main-frame" ng-app="derbyContactManagerFrontendApp" ng-controller="OrganizationsCtrl" ng-init="editInit()">
+    <div ng-class="messageClass">
+        {{message}}
+    </div>
+    
+    <h2>Edit a Organization</h2>
+    <form novalidate class="form-horizontal">
+        <input type="hidden" ng-model="organization.id" />
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label" for="inputName">Name</label>
+                    <div class="controls">
+                        <input type="text" id="inputName" placeholder="Name" ng-model="organization.name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputAddress">Address</label>
+                    <div class="controls">
+                        <input type="text" id="inputAddress" placeholder="Address" ng-model="organization.address">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputCity">City</label>
+                    <div class="controls">
+                        <input type="text" id="inputCity" placeholder="City" ng-model="organization.city">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputState">State</label>
+                    <div class="controls">
+                        <input type="text" id="inputState" placeholder="State" ng-model="organization.state">
+                    </div>
+                </div>                
+                <div class="control-group">
+                    <label class="control-label" for="inputZip">Zip</label>
+                    <div class="controls">
+                        <input type="text" id="inputZip" placeholder="Zip" ng-model="organization.zip">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button ng-click="edit(organization)" class="btn">Save Organization</button>
+                    </div>
+                </div>                     
+            </div>
+            <div class="span6">
+           
+            </div>
+        </div>
+    </form>
+
+</div>

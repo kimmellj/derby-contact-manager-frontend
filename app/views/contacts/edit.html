@@ -1,10 +1,11 @@
-<div class="container main-frame" ng-app="derbyContactManagerFrontendApp" ng-controller="ContactsCtrl" ng-init="addInit()">
+<div class="container main-frame" ng-app="derbyContactManagerFrontendApp" ng-controller="ContactsCtrl" ng-init="editInit()">
     <div ng-class="messageClass">
         {{message}}
     </div>
     
-    <h2>Add a Contact</h2>
+    <h2>{{contact.name}}</h2>
     <form novalidate class="form-horizontal">
+        <input type="hidden" ng-model="contact.id" />
         <div class="row-fluid">
             <div class="span6">
                 <div class="control-group">
@@ -83,7 +84,7 @@
                 </div>
                 <div class="control-group">
                     <div class="controls">
-                        <button ng-click="add(contact)" class="btn">Add Contact</button>
+                        <button ng-click="edit(contact)" class="btn">Save Contact</button>
                     </div>
                 </div>                
             </div>
