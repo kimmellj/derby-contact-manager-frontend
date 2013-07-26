@@ -20,18 +20,14 @@ angular.module('derbyContactManagerFrontendApp')
                 $scope.contact = data;
             }
             
-            console.log($scope.contact);
         }).error(function(error) {
-            console.log(error);
         });        
     }
     
     $scope.init = function() {    
         $http.jsonp($scope.baseUrl + '.json?callback=JSON_CALLBACK').success(function(data) {
             $scope.results = data;
-            console.log(data);
         }).error(function(error) {
-            console.log(error);
         });
     };
     
@@ -42,16 +38,12 @@ angular.module('derbyContactManagerFrontendApp')
     $scope.addInit = function() {
         $http.jsonp($scope.orgBaseUrl + '/indexList.json?callback=JSON_CALLBACK').success(function(data) {
             $scope.organizationList = data;
-            console.log(data);
         }).error(function(error) {
-            console.log(error);
         });
         
         $http.jsonp($scope.roleBaseUrl + '/indexList.json?callback=JSON_CALLBACK').success(function(data) {
             $scope.roleList = data;
-            console.log(data);
         }).error(function(error) {
-            console.log(error);
         });          
     }
     
@@ -73,7 +65,6 @@ angular.module('derbyContactManagerFrontendApp')
         }).
         success(function(data, status, headers, config) {
             $scope.message = data.message;
-            console.log(data);
             
             if (!data.success) {
                 $scope.messageClass = "alert alert-error";
@@ -82,7 +73,6 @@ angular.module('derbyContactManagerFrontendApp')
             }
         }).
         error(function(data, status, headers, config) {
-            console.log(data);
             $scope.message = "There was an issue saving this contact.";
             $scope.messageClass = "alert alert-error";
         });
@@ -101,7 +91,6 @@ angular.module('derbyContactManagerFrontendApp')
         }).
         success(function(data, status, headers, config) {
             $scope.message = data.message;
-            console.log(data);
             
             if (!data.success) {
                 $scope.messageClass = "alert alert-error";

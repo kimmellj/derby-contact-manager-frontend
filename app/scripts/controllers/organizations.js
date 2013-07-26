@@ -15,10 +15,7 @@ angular.module('derbyContactManagerFrontendApp')
                 } else {
                     $scope.organization = data;
                 }
-                
-                console.log($scope.organization);
             }).error(function(error) {
-                console.log(error);
             });        
         }        
 
@@ -26,16 +23,13 @@ angular.module('derbyContactManagerFrontendApp')
             $http.jsonp($scope.baseUrl + '.json?callback=JSON_CALLBACK').success(function (data) {
                 $scope.results = data;
             }).error(function (error) {
-                console.log(error);
             });
         };
 
         $scope.viewInit = function () {
-            console.log($routeParams);
             $http.jsonp($scope.baseUrl + '/view/' + $routeParams.organizationId + '.json?callback=JSON_CALLBACK').success(function (data) {
                 $scope.organization = data;
             }).error(function (error) {
-                console.log(error);
             });
         }
         
@@ -56,7 +50,6 @@ angular.module('derbyContactManagerFrontendApp')
             }).
             success(function(data, status, headers, config) {
                 $scope.message = data.message;
-                console.log(data);
                 
                 if (!data.success) {
                     $scope.messageClass = "alert alert-error";
@@ -65,7 +58,6 @@ angular.module('derbyContactManagerFrontendApp')
                 }
             }).
             error(function(data, status, headers, config) {
-                console.log(data);
                 $scope.message = "There was an issue saving this organization.";
                 $scope.messageClass = "alert alert-error";
             });
@@ -84,7 +76,6 @@ angular.module('derbyContactManagerFrontendApp')
             }).
             success(function (data, status, headers, config) {
                 $scope.message = data.message;
-                console.log(data);
 
                 if (!data.success) {
                     $scope.messageClass = "alert alert-error";
