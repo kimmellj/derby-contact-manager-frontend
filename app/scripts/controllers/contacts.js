@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('derbyContactManagerFrontendApp')
-  .controller('ContactsCtrl', function ($scope, $routeParams, $http, $rootScope, $location, $route) {
+  .controller('ContactsCtrl', function ($scope, $routeParams, $http, $window, $location, $route, LoginService) {
     $scope.results = [];
     $scope.contact = {};
     $scope.organizationList = {};
     
-    $scope.baseUrl = 'http://derbycontactmanager.dev/contacts';
-    $scope.orgBaseUrl = 'http://derbycontactmanager.dev/organizations';
-    $scope.roleBaseUrl = 'http://derbycontactmanager.dev/roles';
+    $scope.baseUrl = 'http://derbycontact.com/contacts';
+    $scope.orgBaseUrl = 'http://derbycontact.com/organizations';
+    $scope.roleBaseUrl = 'http://derbycontact.com/roles';
     $scope.message = '';
     $scope.messageClass = '';
     
@@ -25,10 +25,6 @@ angular.module('derbyContactManagerFrontendApp')
     }
     
     $scope.init = function() {
-        if (!$rootScope.user) {
-            $location.path("/login");
-            return;
-        }
         $http.jsonp($scope.baseUrl + '.json?callback=JSON_CALLBACK').success(function(data) {
             $scope.results = data;
         }).error(function(error) {
@@ -36,19 +32,10 @@ angular.module('derbyContactManagerFrontendApp')
     };
     
     $scope.viewInit = function() {
-        if (!$rootScope.user) {
-            $location.path("/login");
-            return;
-        }
         $scope.getContact($routeParams.contactId);
     }
     
     $scope.addInit = function() {
-        if (!$rootScope.user) {
-            $location.path("/login");
-            return;
-        }
-
         $http.jsonp($scope.orgBaseUrl + '/indexList.json?callback=JSON_CALLBACK').success(function(data) {
             $scope.organizationList = data;
         }).error(function(error) {
@@ -59,11 +46,11 @@ angular.module('derbyContactManagerFrontendApp')
         }).error(function(error) {
         });
 
-        $scope.contact.name = $rootScope.user.name;
-        $scope.contact.facebook_id = $rootScope.user.id;
-        $scope.contact.facebook_link = $rootScope.user.link;
+        $scope.contact.name = LoginService.user.name;
+        $scope.contact.facebook_id = LoginService.user.id;
+        $scope.contact.facebook_link = LoginService.user.link;
 
-        console.log($rootScope.user);
+        console.log(LoginService.user);
     }
     
     $scope.editInit = function() {
@@ -117,10 +104,7 @@ angular.module('derbyContactManagerFrontendApp')
                 $scope.messageClass = "alert alert-success";
                 $scope.contact = {};
 
-                setTimeout(function(){
-                    $location.path("/contacts");
-
-                }, 1000);
+                $window.location = "/";
             }
         }).
         error(function(data, status, headers, config) {
