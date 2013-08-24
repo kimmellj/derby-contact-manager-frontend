@@ -1,91 +1,57 @@
-<div class="container main-frame" ng-app="derbyContactManagerFrontendApp" ng-controller="ContactsCtrl" ng-init="addInit()">
+<div class="container main-frame" ng-app="derbyContactManagerFrontendApp" ng-controller="ContactsCtrl"
+     ng-init="addInit()">
     <div ng-class="messageClass">
         {{message}}
     </div>
-    
+
     <h2>Add a Contact</h2>
+
     <form novalidate class="form-horizontal">
-        <div class="row-fluid">
-            <div class="span6">
-                <div class="control-group">
+
+        <input type="hidden" id="inputFacebookId" class="form-control" ng-model="contact.facebook_id">
+        <input type="hidden" id="inputFacebookLink" class="form-control" ng-model="contact.facebook_link">
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
                     <label class="control-label" for="inputName">Name</label>
-                    <div class="controls">
-                        <input type="text" id="inputName" placeholder="Name" ng-model="contact.name">
-                    </div>
+                    <input type="text" id="inputName" class="form-control" class="form-control" placeholder="Name"
+                           ng-model="contact.name">
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     <label class="control-label" for="inputEmail">Email</label>
-                    <div class="controls">
-                        <input type="text" id="inputEmail" placeholder="Email" ng-model="contact.email">
-                    </div>
+                    <input type="text" id="inputEmail" class="form-control" placeholder="Email"
+                           ng-model="contact.email">
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     <label class="control-label" for="inputPhone">Phone</label>
-                    <div class="controls">
-                        <input type="text" id="inputPhone" placeholder="Phone" ng-model="contact.phone">
-                    </div>
+                    <input type="text" id="inputPhone" class="form-control" placeholder="Phone"
+                           ng-model="contact.phone">
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputAddress">Address</label>
-                    <div class="controls">
-                        <input type="text" id="inputAddress" placeholder="Address" ng-model="contact.address">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputCity">City</label>
-                    <div class="controls">
-                        <input type="text" id="inputCity" placeholder="City" ng-model="contact.city">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputState">State</label>
-                    <div class="controls">
-                        <input type="text" id="inputState" placeholder="State" ng-model="contact.state">
-                    </div>
-                </div>                
-                <div class="control-group">
-                    <label class="control-label" for="inputZip">Zip</label>
-                    <div class="controls">
-                        <input type="text" id="inputZip" placeholder="Zip" ng-model="contact.zip">
-                    </div>
-                </div>                 
             </div>
-            <div class="span6">
-                <div class="control-group">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <div class="form-group">
                     <label class="control-label" for="inputDerbyName">Derby Name</label>
-                    <div class="controls">
-                        <input type="text" id="inputDerbyName" placeholder="Derby Name" ng-model="contact.derby_name">
-                    </div>
+
+                    <input type="text" id="inputDerbyName" class="form-control" placeholder="Derby Name"
+                           ng-model="contact.derby_name">
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     <label class="control-label" for="selectOrganizationID">Organization</label>
-                    <div class="controls">
-                        <select ng-model="contact.organization_id" ng-options="organization.Organization.id as organization.Organization.name for organization in organizationList"></select>
-                    </div>
+
+                    <select class="form-control" ng-model="contact.organization_id"
+                            ng-options="organization.Organization.id as organization.Organization.name for organization in organizationList"></select>
                 </div>
-                <div class="control-group">
+                <div class="form-group">
                     <label class="control-label" for="selectOrganizationID">Role</label>
-                    <div class="controls">
-                        <select ng-model="contact.role_id" ng-options="role.Role.id as role.Role.name for role in roleList"></select>
-                    </div>
-                </div>                
-                <div class="control-group">
-                    <label class="control-label" for="inputInsuranceType">Insurance Type</label>
-                    <div class="controls">
-                        <input type="text" id="inputInsuranceType" placeholder="Insurance Type" ng-model="contact.insurance_type">
-                    </div>
+
+                    <select class="form-control" ng-model="contact.role_id"
+                            ng-options="role.Role.id as role.Role.name for role in roleList"></select>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="inputInsuranceNumber">Insurance Number</label>
-                    <div class="controls">
-                        <input type="text" id="inputInsuranceNumber" placeholder="Insurance Number" ng-model="contact.insurance_number">
-                    </div>
+                <div class="form-group">
+                    <button ng-click="add(contact)" class="btn">Add Contact</button>
                 </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <button ng-click="add(contact)" class="btn">Add Contact</button>
-                    </div>
-                </div>                
             </div>
         </div>
     </form>

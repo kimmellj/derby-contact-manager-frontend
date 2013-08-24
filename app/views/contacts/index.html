@@ -1,26 +1,13 @@
 <div class="container main-frame" ng-app="derbyContactManagerFrontendApp" ng-controller="ContactsCtrl" ng-init="init()">
-    <a href="#/contacts/add" class="btn btn-success pull-right">Add New Contact</a>
-    
     <div style="clear:both;"></div><br />
-    
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Derby Name</th>
-                <th>Name</th>
-                <th>Organization</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tr ng-repeat="contact in results">
-            <td>{{contact.Contact.derby_name}}</td>
-            <td>{{contact.Contact.name}}</td>
-            <td>{{contact.Organization.name}}</td>
-            <td>
-                <a href="#/contacts/view/{{contact.Contact.id}}" class="btn">View</a>
-                <a href="#/contacts/edit/{{contact.Contact.id}}" class="btn">Edit</a>
-                <a href="" class="btn btn-danger" data-ng-click="deleteContact(contact.Contact.id)">Delete</a>
-            </td>
-        </tr>
-    </table>
+
+    <div class="btn-group-vertical btn-group-lg contact-list">
+        <a href="#/contacts/view/{{contact.Contact.id}}" class="contact-btn btn btn-default" ng-repeat="contact in results" data-id="{{contact.Contact.id}}">
+            {{contact.Contact.derby_name}}
+            <span ng-show="contact.Contact.derby_name">/</span>
+            {{contact.Contact.name}}  -
+            <span ng-hide="contact.Contact.organization_id">Not Affiliated</span>
+            {{contact.Organization.name}}
+        </a>
+    </div>
 </div>

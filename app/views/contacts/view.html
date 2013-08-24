@@ -1,6 +1,7 @@
 <div class="container main-frame" ng-app="derbyContactManagerFrontendApp" ng-controller="ContactsCtrl" ng-init="viewInit()">
-    <h2>{{contact.Contact.name}} / {{contact.Contact.derby_name}}</h2>
-    <h3>{{contact.Organization.name}}</h3>
+    <h2>{{contact.Contact.name}} <span ng-hide="contact.Contact.derby_name">/</span> {{contact.Contact.derby_name}}</h2>
+    <h3 ng-show="contact.Contact.organization_id">{{contact.Organization.name}}</h3>
+    <h3 ng-hide="contact.Contact.organization_id">Not Affiliated</h3>
     
     <a href="#" class="btn pull-right">Back to List</a>
 
@@ -9,18 +10,6 @@
         <dd>{{contact.Contact.phone}}</dd>
         <dt>Email</dt>
         <dd><a href="mailto:{{contact.Contact.email}}">{{contact.Contact.email}}</a></dd>
-        <dt>Insurance Type</dt>
-        <dd>{{contact.Contact.insurance_type}}</dd>
-        <dt>Insurance Number</dt>
-        <dd>{{contact.Contact.insurance_number}}</dd>         
-        <dt>Address</dt>
-        <dd>{{contact.Contact.address}}</dd>
-        <dt>City</dt>
-        <dd>{{contact.Contact.city}}</dd>
-        <dt>State</dt>
-        <dd>{{contact.Contact.state}}</dd>
-        <dt>Zip</dt>
-        <dd>{{contact.Contact.zip}}</dd>          
     </dl>
 
 </div>
